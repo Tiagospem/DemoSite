@@ -1,26 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-6">
-        <div class="max-w-4xl mx-auto">
+    <div class="py-8">
+        <div class="max-w-3xl mx-auto">
             <!-- Título -->
-            <div class="text-center mb-12">
-                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">Encurtador de URLs</h1>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Crie links curtos e fáceis de compartilhar com nossa ferramenta gratuita.
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-semibold text-dark mb-3">Encurtador de URLs</h1>
+                <p class="text-gray-600 max-w-lg mx-auto">
+                    Crie links curtos e compartilhe facilmente.
                 </p>
             </div>
 
             <!-- Mensagens de alerta -->
             @if(session('success'))
-                <div class="mb-6 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md" role="alert">
-                    <p>{{ session('success') }}</p>
+                <div class="mb-6 bg-green-50 border border-green-200 text-green-700 p-4 rounded-md shadow-soft" role="alert">
+                    <p class="text-sm">{{ session('success') }}</p>
                 </div>
             @endif
 
             @if($errors->any())
-                <div class="mb-6 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md" role="alert">
-                    <ul>
+                <div class="mb-6 bg-red-50 border border-red-200 text-red-700 p-4 rounded-md shadow-soft" role="alert">
+                    <ul class="text-sm">
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -29,21 +29,20 @@
             @endif
 
             <!-- Card principal -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-12">
+            <div class="bg-white rounded-lg shadow-medium mb-12 overflow-hidden">
                 <div class="p-6 md:p-8">
-                    <form action="{{ route('shorten.store') }}" method="POST" class="space-y-4">
+                    <form action="{{ route('shorten.store') }}" method="POST">
                         @csrf
                         <div class="flex flex-col items-center">
-                            <label for="original_url"
-                                class="block text-sm font-medium text-gray-700 mb-2 text-center w-full">
+                            <label for="original_url" class="block text-sm text-gray-600 mb-3 text-center w-full">
                                 Digite a URL que deseja encurtar
                             </label>
-                            <div class="flex w-full max-w-2xl mx-auto">
+                            <div class="flex w-full max-w-xl mx-auto">
                                 <input type="url" name="original_url" id="original_url"
-                                    placeholder="https://exemplo.com/url-muito-longa-para-encurtar" required
-                                    class="flex-grow px-4 py-3 rounded-l-lg border border-gray-300 focus:ring-primary focus:border-primary">
+                                    placeholder="https://exemplo.com/url-longa-para-encurtar" required
+                                    class="flex-grow px-4 py-3 rounded-l-md border border-gray-200 focus:ring-1 focus:ring-primary focus:border-primary">
                                 <button type="submit"
-                                    class="bg-primary hover:bg-blue-600 text-white py-3 px-6 rounded-r-lg font-medium transition-colors duration-200">
+                                    class="bg-primary text-white py-3 px-6 rounded-r-md font-medium transition-colors duration-200 hover:bg-gray-800">
                                     Encurtar
                                 </button>
                             </div>
@@ -54,24 +53,22 @@
 
             <!-- Lista de links -->
             @if(count($shortLinks) > 0)
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h2 class="text-lg font-semibold text-gray-800">Seus links encurtados</h2>
+                <div class="bg-white rounded-lg shadow-medium overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-100">
+                        <h2 class="text-base font-medium text-dark">Seus links temporários</h2>
+                        <p class="text-xs text-gray-500 mt-1">Links visíveis apenas nesta sessão</p>
                     </div>
-                    <div class="divide-y divide-gray-200">
+                    <div class="divide-y divide-gray-100">
                         @foreach($shortLinks as $link)
-                            <div class="p-6 md:flex md:items-center md:justify-between">
-                                <div class="mb-4 md:mb-0">
+                            <div class="p-5 md:flex md:items-center md:justify-between">
+                                <div class="mb-3 md:mb-0">
                                     <div class="flex items-center">
-                                        <div class="flex-shrink-0 text-primary">
-                                            <i class="fas fa-link"></i>
-                                        </div>
-                                        <div class="ml-3">
+                                        <div class="ml-0">
                                             <a href="{{ route('shorten.redirect', $link->short_code) }}" target="_blank"
-                                                class="text-base font-medium text-primary hover:underline">
+                                                class="text-sm font-medium text-primary hover:underline">
                                                 {{ url('/') }}/{{ $link->short_code }}
                                             </a>
-                                            <div class="mt-1 text-sm text-gray-500 truncate max-w-md"
+                                            <div class="mt-1 text-xs text-gray-500 truncate max-w-md"
                                                 title="{{ $link->original_url }}">
                                                 {{ $link->original_url }}
                                             </div>
@@ -80,16 +77,16 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <div class="mr-6 text-center">
-                                        <span class="block text-2xl font-bold text-gray-900">{{ $link->clicks }}</span>
-                                        <span class="text-xs text-gray-500">cliques</span>
+                                    <div class="mr-4 text-center">
+                                        <span class="block text-lg font-medium text-dark">{{ $link->clicks }}</span>
+                                        <span class="text-xs text-gray-400">cliques</span>
                                     </div>
 
                                     <div class="flex space-x-2">
-                                        <button onclick="copyToClipboard('{{ url('/' . '/' . $link->short_code) }}')"
-                                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 p-2 rounded-md transition-colors duration-200"
+                                        <button onclick="copyToClipboard('{{ url('/') }}/{{ $link->short_code }}')"
+                                            class="bg-gray-50 hover:bg-gray-100 text-gray-600 p-2 rounded-md transition-colors duration-200 border border-gray-100"
                                             title="Copiar link">
-                                            <i class="fas fa-copy"></i>
+                                            <i class="fas fa-copy text-xs"></i>
                                         </button>
 
                                         <form action="{{ route('shorten.destroy', $link->id) }}" method="POST"
@@ -97,9 +94,9 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-md transition-colors duration-200"
+                                                class="bg-gray-50 hover:bg-gray-100 text-red-500 p-2 rounded-md transition-colors duration-200 border border-gray-100"
                                                 title="Excluir link">
-                                                <i class="fas fa-trash"></i>
+                                                <i class="fas fa-trash text-xs"></i>
                                             </button>
                                         </form>
                                     </div>

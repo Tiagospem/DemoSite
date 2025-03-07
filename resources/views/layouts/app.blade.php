@@ -14,8 +14,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3B82F6',
-                        secondary: '#10B981',
+                        primary: '#000000',
+                        secondary: '#333333',
+                        accent: '#FFFFFF',
+                        light: '#F7F7F7',
+                        dark: '#0F0F0F',
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
+                        'medium': '0 4px 20px rgba(0, 0, 0, 0.08)',
                     }
                 },
                 fontFamily: {
@@ -28,14 +35,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
-<body class="bg-gray-50 font-sans antialiased h-full flex flex-col">
-    <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<body class="bg-light font-sans antialiased h-full flex flex-col text-dark">
+    <nav class="bg-white border-b border-gray-100 shadow-soft">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <i class="fas fa-link text-primary text-2xl mr-2"></i>
-                        <span class="text-xl font-bold text-gray-800">URLify</span>
+                        <i class="fas fa-link text-primary text-lg mr-2"></i>
+                        <span class="text-lg font-medium text-primary">URLify</span>
                     </div>
                 </div>
             </div>
@@ -43,13 +50,13 @@
     </nav>
 
     <main class="py-10 flex-grow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             @yield('content')
         </div>
     </main>
 
-    <footer class="bg-white border-t border-gray-200 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-white border-t border-gray-100 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="py-6 flex items-center justify-center">
                 <p class="text-gray-500 text-sm">
                     &copy; {{ date('Y') }} URLify. Todos os direitos reservados.

@@ -15,6 +15,6 @@ class ShortLink extends Model
      * @var array
      */
     protected $fillable = [
-        'original_url', 'short_code', 'clicks'
+        'original_url', 'short_code', 'clicks', 'session_id'
     ];
 }
