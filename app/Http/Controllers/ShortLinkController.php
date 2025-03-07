@@ -9,12 +9,12 @@ use Illuminate\Support\Str;
 class ShortLinkController extends Controller
 {
     /**
-     * Gera uma chave de sessão única para o usuário
+     * Generates a unique session key for the user
      */
     private function getSessionKey()
     {
         if (!session()->has('user_session_key')) {
-            // Combina IP, user agent e algo aleatório para criar uma chave única
+            // Combines IP, user agent and something random to create a unique key
             $sessionKey = md5(request()->ip() . request()->userAgent() . Str::random(10));
             session(['user_session_key' => $sessionKey]);
         }
@@ -23,7 +23,7 @@ class ShortLinkController extends Controller
     }
     
     /**
-     * Exibe a página inicial
+     * Display the home page
      */
     public function index()
     {
@@ -36,7 +36,7 @@ class ShortLinkController extends Controller
     }
 
     /**
-     * Gera um novo link encurtado
+     * Generate a new shortened link
      */
     public function store(Request $request)
     {
@@ -44,15 +44,15 @@ class ShortLinkController extends Controller
             'original_url' => 'required|url'
         ]);
 
-        // Gera um código único aleatório
+        // Generate a random unique code
         $shortCode = Str::random(6);
         
-        // Verifica se o código já existe
+        // Check if code already exists
         while (ShortLink::where('short_code', $shortCode)->exists()) {
             $shortCode = Str::random(6);
         }
 
-        // Cria o link encurtado
+        // Create the shortened link
         ShortLink::create([
             'original_url' => $request->original_url,
             'short_code' => $shortCode,
@@ -60,35 +60,35 @@ class ShortLinkController extends Controller
             'session_id' => $this->getSessionKey()
         ]);
 
-        return back()->with('success', 'Link encurtado criado com sucesso!');
+        return back()->with('success', 'Shortened link created successfully!');
     }
 
     /**
-     * Redireciona para a URL original
+     * Redirect to the original URL
      */
     public function redirect($shortCode)
     {
         $shortLink = ShortLink::where('short_code', $shortCode)->firstOrFail();
         
-        // Incrementa o contador de cliques
+        // Increment click counter
         $shortLink->increment('clicks');
         
         return redirect($shortLink->original_url);
     }
 
     /**
-     * Remove um link encurtado
+     * Remove a shortened link
      */
     public function destroy($id)
     {
         $sessionKey = $this->getSessionKey();
         
-        // Garante que apenas o criador pode excluir o link
+        // Ensure only the creator can delete the link
         ShortLink::where('id', $id)
                 ->where('session_id', $sessionKey)
                 ->firstOrFail()
                 ->delete();
         
-        return back()->with('success', 'Link encurtado removido com sucesso!');
+        return back()->with('success', 'Shortened link deleted successfully!');
     }
 }

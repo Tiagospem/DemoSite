@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<html lang="en" class="h-full">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>URL Shortener - Encurtador de URLs</title>
+    <title>URL Shortener</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS via CDN -->
@@ -59,7 +59,7 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="py-6 flex items-center justify-center">
                 <p class="text-gray-500 text-sm">
-                    &copy; {{ date('Y') }} URLify. Todos os direitos reservados.
+                    &copy; {{ date('Y') }} URLify. All rights reserved.
                 </p>
             </div>
         </div>
