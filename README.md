@@ -11,13 +11,13 @@
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [Simple, fast routing engine](https://laravel.com/docs/routing).
+-   [Powerful dependency injection container](https://laravel.com/docs/container).
+-   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+-   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+-   [Robust background job processing](https://laravel.com/docs/queues).
+-   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
@@ -35,19 +35,19 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 ### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   **[Vehikl](https://vehikl.com/)**
+-   **[Tighten Co.](https://tighten.co)**
+-   **[WebReinvent](https://webreinvent.com/)**
+-   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+-   **[64 Robots](https://64robots.com)**
+-   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+-   **[Cyber-Duck](https://cyber-duck.co.uk)**
+-   **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+-   **[Jump24](https://jump24.co.uk)**
+-   **[Redberry](https://redberry.international/laravel/)**
+-   **[Active Logic](https://activelogic.com)**
+-   **[byte5](https://byte5.de)**
+-   **[OP.GG](https://op.gg)**
 
 ## Contributing
 
@@ -64,3 +64,79 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# URLify - Encurtador de URLs
+
+Uma ferramenta simples e moderna para encurtar URLs, desenvolvida com Laravel e Tailwind CSS.
+
+## Funcionalidades
+
+-   Encurtamento de URLs longas em links curtos e fáceis de compartilhar
+-   Interface moderna e responsiva
+-   Rastreamento de cliques para cada link encurtado
+-   Gerenciamento de links (copiar e excluir)
+
+## Tecnologias Utilizadas
+
+-   Laravel
+-   Tailwind CSS
+-   Font Awesome
+-   JavaScript
+
+## Instalação
+
+1. Clone o repositório
+
+```bash
+git clone https://seu-repositorio/urlify.git
+cd urlify
+```
+
+2. Instale as dependências do PHP
+
+```bash
+composer install
+```
+
+3. Configure o arquivo .env
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+4. Configure o banco de dados no arquivo .env
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=urlify
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+5. Execute as migrações
+
+```bash
+php artisan migrate
+```
+
+6. Inicie o servidor de desenvolvimento
+
+```bash
+php artisan serve
+```
+
+7. Acesse a aplicação em http://localhost:8000
+
+## Uso
+
+1. Digite a URL que deseja encurtar no campo de entrada
+2. Clique no botão "Encurtar"
+3. Copie o link encurtado gerado e compartilhe-o
+4. Rastreie o número de cliques no link gerado
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT.
