@@ -33,10 +33,12 @@
                 <div class="p-6 md:p-8">
                     <form action="{{ route('shorten.store') }}" method="POST" class="space-y-4">
                         @csrf
-                        <div>
-                            <label for="original_url" class="block text-sm font-medium text-gray-700 mb-2">Digite a URL que
-                                deseja encurtar</label>
-                            <div class="flex">
+                        <div class="flex flex-col items-center">
+                            <label for="original_url"
+                                class="block text-sm font-medium text-gray-700 mb-2 text-center w-full">
+                                Digite a URL que deseja encurtar
+                            </label>
+                            <div class="flex w-full max-w-2xl mx-auto">
                                 <input type="url" name="original_url" id="original_url"
                                     placeholder="https://exemplo.com/url-muito-longa-para-encurtar" required
                                     class="flex-grow px-4 py-3 rounded-l-lg border border-gray-300 focus:ring-primary focus:border-primary">
